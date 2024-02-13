@@ -126,7 +126,7 @@ $(document).ready(function() {
     });
 
     $('#confirm-delete-btn').on('click', function() {
-        var taskId = $(this).data('task-id');
+        var taskId = $(this).attr('data-task-id');
         $.ajax({
             url: '/tasks-delete/' + taskId,
             type: 'DELETE',

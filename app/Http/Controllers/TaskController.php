@@ -67,27 +67,23 @@ class TaskController extends Controller
         return response()->json(['message' => 'Task status updated successfully','tasks' => $tasks], 200);
     }
 
-    public function delete($taskId)
+     public function delete($taskId)
     {
+
         $tasks = FetchConvertTasks::fetchTasks();
-
-        $index = null;
-        foreach ($tasks as $key => $task) {
-            if ($task['id'] == $taskId) {
-                $index = $key;
-                break;
-            }
-        }
-
-        if ($index !== null) {
+        
+        $index = array_search($taskId, array_column($tasks, 'id'));
+        
+        if ($index !== false) {
             unset($tasks[$index]);
-            $tasks = array_values($tasks);
+            $tasks = array_values($tasks); 
             Session::put('tasks', $tasks);
-
+        
             return response()->json(['message' => 'Task deleted successfully', 'tasks' => $tasks], 200);
         } else {
             return response()->json(['message' => 'Task not found'], 404);
         }
     }
+
 
 }
