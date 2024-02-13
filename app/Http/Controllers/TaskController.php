@@ -67,7 +67,7 @@ class TaskController extends Controller
         return response()->json(['message' => 'Task status updated successfully','tasks' => $tasks], 200);
     }
 
-     public function delete($taskId)
+    public function delete($taskId)
     {
 
         $tasks = FetchConvertTasks::fetchTasks();
