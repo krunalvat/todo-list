@@ -56,6 +56,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     </body>
 <script>
+    let deleteRoute = "{{ route('delete.task','') }}";
+    let updateRoute = "{{ route('update.task','') }}";
 $(document).ready(function() {
     $.ajaxSetup({
         headers: {
@@ -76,7 +78,7 @@ $(document).ready(function() {
     function updateTaskStatus(taskId, button) {
         $(this).removeClass('btn-primary');
         $.ajax({
-            url: '/tasks/' + taskId,
+            url: updateRoute + '/' + taskId,
             type: 'PUT',
             success: function(response) {
                 $('#successMessage').text(response.message).show();
@@ -128,7 +130,7 @@ $(document).ready(function() {
     $('#confirm-delete-btn').on('click', function() {
         var taskId = $(this).attr('data-task-id');
         $.ajax({
-            url: '/tasks-delete/' + taskId,
+            url: deleteRoute + '/' + taskId,
             type: 'DELETE',
             success: function(response) {
                 $('#successMessage').text(response.message).show();

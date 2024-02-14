@@ -19,5 +19,5 @@ Route::get('/', [TaskController::class, 'index']);
 
 
 Route::post('/add-task', [TaskController::class,'addTask'])->name('add.task');
-Route::put('/tasks/{id}', [TaskController::class, 'update']);
-Route::delete('/tasks-delete/{taskId}/', [TaskController::class,'delete']);
+Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('update.task');
+Route::delete('/tasks-delete/{taskId}/', [TaskController::class,'delete'])->name('delete.task');
